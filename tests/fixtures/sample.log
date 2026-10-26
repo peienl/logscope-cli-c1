@@ -1,0 +1,14 @@
+this line has no timestamp or level and is garbage
+2026-10-01 09:00:01 INFO Service started
+2026-10-01 09:00:02 INFO Listening on port 8080
+2026-10-01 09:00:03 WARN Slow response from cache: 450ms
+2026-10-01 09:00:03 ERROR Payment gateway timeout: order=1234
+  at PaymentClient.call(PaymentClient.java:88)
+  at OrderService.pay(OrderService.java:40)
+2026-10-01 09:05:10 ERROR Payment gateway timeout: order=5678
+2026-10-01 09:06:00 INFO Retry succeeded: order=5678
+2026-99-99 09:10:00 ERROR Bad timestamp should be malformed
+2026-10-01 09:20:45 ERROR Database connection refused
+2026-10-01 09:21:00 WARN Connection pool near capacity
+2026-10-01 09:21:05 ERROR Payment gateway timeout: order=1234
+2026-10-01 10:02:11 INFO Shutdown requested

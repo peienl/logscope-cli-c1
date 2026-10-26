@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logscope"
+version = "0.1.0"
+description = "Stream-friendly CLI for summarizing application logs after an incident"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+
+[project.scripts]
+logscope = "logscope.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["logscope*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
