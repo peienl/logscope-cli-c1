@@ -47,10 +47,14 @@ behavior changes.
 
 ## Build / test / run commands
 
-Fill these in as the project is scaffolded (keep this section up to date):
 - Install (editable): `pip install -e .`
-- Run: `logscope summary app.log` (or `python -m logscope ...` before install)
-- Tests: `pytest`
+- Run: `python -m logscope summary app.log` (or `logscope summary app.log` once
+  the console-script entry point is on PATH)
+- Tests (fast, default): `pytest` — excludes slow tests via `addopts` in
+  `pyproject.toml`
+- Tests (slow, 100MB-file streaming checks): `pytest -m slow tests/test_large_file_streaming.py`
+  — takes tens of minutes; run only when touching the parser or commands'
+  memory behavior, not on every change
 - Lint/typecheck: none configured yet — don't add linters/formatters unless
   asked.
 
@@ -61,10 +65,12 @@ Fill these in as the project is scaffolded (keep this section up to date):
   they're counted, not raised).
 - Add a small fixture log under `tests/fixtures/` covering INFO/WARN/ERROR
   lines, at least one multi-line error, and at least one malformed line.
-- For the 100 MB streaming constraint, prefer a test that generates a large
-  temp file and asserts memory stays bounded (or at minimum, asserts the
-  parser never calls `.readlines()`/`.read()` by construction/review) rather
-  than committing a 100 MB fixture to the repo.
+- The 100 MB streaming constraint is verified by `tests/test_large_file_streaming.py`,
+  which generates a large temp file (never committed to the repo) and asserts
+  peak memory stays bounded via `tracemalloc`. These tests are tagged
+  `@pytest.mark.slow` / `pytestmark = pytest.mark.slow` and excluded from the
+  default `pytest` run — keep new slow tests tagged the same way so the
+  default suite stays fast.
 
 ## Working agreements
 

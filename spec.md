@@ -147,10 +147,11 @@ spec.md
 
 ## 10. Acceptance Checklist
 
-- [ ] `logscope summary app.log` prints level counts, top 5 errors, first/last ts
-- [ ] `logscope timeline app.log --bucket 15m` prints a bucketed bar chart
-- [ ] `logscope grep app.log --level ERROR --since "2026-10-01 09:00"` filters correctly
-- [ ] `--format json` and `--format md` work for all three commands
-- [ ] `--format md` writes a report file and does not dump the body to stdout
-- [ ] 100 MB file processes without loading it fully into memory
-- [ ] Malformed lines are counted, reported, and never crash the tool
+- [x] `logscope summary app.log` prints level counts, top 5 errors, first/last ts
+- [x] `logscope timeline app.log --bucket 15m` prints a bucketed bar chart
+- [x] `logscope grep app.log --level ERROR --since "2026-10-01 09:00"` filters correctly
+- [x] `--format json` and `--format md` work for all three commands
+- [x] `--format md` writes a report file and does not dump the body to stdout
+- [x] 100 MB file processes without loading it fully into memory (verified by
+      `pytest -m slow tests/test_large_file_streaming.py`)
+- [x] Malformed lines are counted, reported, and never crash the tool

@@ -18,3 +18,7 @@ include = ["logscope*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "-m 'not slow'"
+markers = [
+    "slow: slow tests (e.g. 100MB-file streaming checks); run with `pytest -m slow`",
+]
